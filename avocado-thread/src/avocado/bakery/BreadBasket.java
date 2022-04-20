@@ -21,7 +21,7 @@ public class BreadBasket {
 				System.out.println("");
 			}catch (Throwable e) {}
 		}
-		basket.put(bread);
+		basket.put(bread++);
 		System.out.println("["+name+"]   빵 생산완료.  총 = "+basket.size() + " 개 ");
 		System.out.println("");
 	}
