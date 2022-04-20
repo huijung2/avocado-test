@@ -4,7 +4,7 @@ package avocado.bakery;
 //손님 1  -----------------------------
 class Consumer1 extends Thread { 
 	private BreadBasket basket;
-	
+
 	public Consumer1(BreadBasket basket){
 		this.basket = basket;
 	}
@@ -12,11 +12,11 @@ class Consumer1 extends Thread {
 	@Override
 	public void run() {
 		try {
-			for (int i = 0; i < 30; i++) {
+			for (int i = 0; i < 20; i++) {
 				Thread.sleep(1000);
 				basket.eatBread();
 			} 
-		}catch (Exception e) {
+		}catch (Exception  e) {
 		}
 	}
 }
@@ -32,11 +32,11 @@ class Consumer2 extends Thread {
 	@Override
 	public void run() {
 		try {
-			for (int i = 0; i < 30; i++) {
+			for (int i = 0; i < 20; i++) {
 				Thread.sleep(2000);
 				basket.eatBread();
 			} 
-		}catch (Exception e) {
+		}catch (Exception   e) {
 		}
 	}
 }
@@ -52,17 +52,17 @@ class Consumer3 extends Thread {
 	@Override
 	public void run() {
 		try {
-			for (int i = 0; i < 30; i++) {
+			for (int i = 0; i < 20; i++) {
 				Thread.sleep(3000);
 				basket.eatBread();
 			} 
-		}catch (Exception e) {
+		}catch (Exception  e) {
 		}
 	}
 }
 
 //손님 4  -----------------------------
-class Consumer4 extends Thread { 
+class  Consumer4 extends Thread { 
 	private BreadBasket basket;
 
 	public Consumer4(BreadBasket basket){
@@ -72,11 +72,11 @@ class Consumer4 extends Thread {
 	@Override
 	public void run() {
 		try {
-			for (int i = 0; i < 30; i++) {
+			for (int i = 0; i < 20; i++) {
 				Thread.sleep(4000);
 				basket.eatBread();
 			} 
-		}catch (Exception e) {
+		}catch (Exception  e) {
 		}
 	}
 }
@@ -86,16 +86,17 @@ class Consumer5 extends Thread {
 	private BreadBasket basket;
 
 	public Consumer5(BreadBasket basket){
+		this.basket = basket;
 	}
-				
+
 	@Override
 	public void run() {
 		try {
-			for (int i = 0; i < 30; i++) {
+			for (int i = 0; i < 20; i++) {
 				Thread.sleep(5000);
 				basket.eatBread();
 			} 
-		}catch (Exception e) {
+		}catch (Exception  e) {
 		}
 	}
 }

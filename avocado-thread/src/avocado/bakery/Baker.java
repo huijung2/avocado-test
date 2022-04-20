@@ -12,12 +12,11 @@ class BakerA extends Thread {
 	@Override
 	public void run() {
 		try {
-			for (int i = 0; i < 30; i++) {
-			  Thread.sleep(3000);
-			   basket.makeBread();
-
+			for (int i = 0; i < 20; i++) {
+				Thread.sleep(3000);
+				basket.makeBread(i);
 			}
-		} catch (Exception e) {
+		} catch (Exception  e) {
 		}
 	}
 }
@@ -32,11 +31,11 @@ class BakerB extends Thread {
 	@Override
 	public void run() {
 		try {
-			for (int i = 0; i < 30; i++) {
+			for (int i = 0; i < 20; i++) {
 				Thread.sleep(2000);
-				basket.makeBread();
+				basket.makeBread(i);
 			}
 		} catch (Exception e) {
 		}
 	}
- }	
+}	

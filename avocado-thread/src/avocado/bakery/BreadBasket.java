@@ -1,45 +1,43 @@
 package avocado.bakery;
 
+import java.util.concurrent.BlockingQueue;
+
+
 public class BreadBasket {
-	private int breadCount = 0;
+	private int bread = 0;  
+	private BlockingQueue<Integer> basket;  
+	private int max_size = 20;
 
-	public BreadBasket(){}
-
-	public synchronized void makeBread(){
+	public BreadBasket(BlockingQueue<Integer> basket){
+		this.basket = basket;
+	}
+	 
+	//생산자
+	 void makeBread(int bread) throws Exception{
 		String name = Thread.currentThread().getName();
-		while (breadCount >= 20) {
+		while (bread >= max_size) {
 			try {
-				System.out.println(name+"  빵 생산 초과로 대기.  총 = "+breadCount + " 개 ");
+				System.out.println("["+name+"]    빵 생산 초과로 대기.");
 				System.out.println("");
-				System.out.println("-------------------------------");
-				System.out.println("");
-				wait();
-			} catch (Exception e) {}
+			}catch (Throwable e) {}
 		}
-		breadCount++;
-		System.out.println(name + " 따끈한 빵 1개 생산완료.  총 = "+breadCount + " 개 ");
+		basket.put(bread++);
+		System.out.println("["+name+"]   빵 생산완료.  총 = "+basket.size() + " 개 ");
 		System.out.println("");
-		System.out.println("-------------------------------");
-		System.out.println("");
-		notify();   
 	}
 
-	public synchronized void eatBread(){
+	//소비자
+	 void eatBread() throws Exception{
+
 		String name = Thread.currentThread().getName();
-		while (breadCount < 1) {
+		while (bread < 1) {			
 			try {
-				System.out.println(name+"  빵이 없어 기다리는 중.  총 = "+breadCount + " 개 ");
+				System.out.println("["+name+"]    빵이 없어 기다리는 중. ");
 				System.out.println("");
-				System.out.println("-------------------------------");
-				System.out.println("");
-				wait();
-			} catch (Exception e) { }
-		}
-		breadCount--;
-		System.out.println(name+" 따끈한 빵 한개 구매완료.  총 = " +breadCount + " 개 ");
+			}catch (Throwable e) {}
+			Integer b = basket.take();
+		System.out.println("["+name+"]  빵 한개 구매완료.  총 = " + b + " 개 ");
 		System.out.println("");
-		System.out.println("-------------------------------");
-		System.out.println("");
-		notify();
 	}
+}
 }
