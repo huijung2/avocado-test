@@ -11,9 +11,9 @@ public class BreadBasket {
 	public BreadBasket(BlockingQueue<Integer> basket){
 		this.basket = basket;
 	}
-	 
+
 	//생산자
-	 void makeBread(int bread) throws Exception{
+	void makeBread(int bread) throws Exception{
 		String name = Thread.currentThread().getName();
 		while (bread >= max_size) {
 			try {
@@ -21,13 +21,13 @@ public class BreadBasket {
 				System.out.println("");
 			}catch (Throwable e) {}
 		}
-		basket.put(bread++);
+		basket.put(bread);
 		System.out.println("["+name+"]   빵 생산완료.  총 = "+basket.size() + " 개 ");
 		System.out.println("");
 	}
 
 	//소비자
-	 void eatBread() throws Exception{
+	void eatBread() throws Exception{
 
 		String name = Thread.currentThread().getName();
 		while (bread < 1) {			
@@ -36,8 +36,8 @@ public class BreadBasket {
 				System.out.println("");
 			}catch (Throwable e) {}
 			Integer b = basket.take();
-		System.out.println("["+name+"]  빵 한개 구매완료.  총 = " + b + " 개 ");
-		System.out.println("");
+			System.out.println("["+name+"]  빵 한개 구매완료.  총 = " + basket.size() + " 개 ");
+			System.out.println("");
+		}
 	}
-}
 }
